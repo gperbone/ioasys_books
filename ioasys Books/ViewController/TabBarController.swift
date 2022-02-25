@@ -12,7 +12,7 @@ class TabBarController: UITabBarController {
     var authCode: String
     
     //books info for bookmarked page
-    var myBookmarkedBooks = BookmarkedBooks().bookmarkedBooks
+    var myBookmarkedBooks = BookmarkedBooks()
     
     
     init(currentUser: UserInformation, authCode: String){

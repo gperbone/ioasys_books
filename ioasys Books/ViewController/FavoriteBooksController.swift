@@ -73,7 +73,7 @@ class FavoriteBooksViewController: UIViewController {
         }
         
         if let tabBarController = tabBarController as? TabBarController {
-            for currentBook in tabBarController.myBookmarkedBooks{
+            for currentBook in tabBarController.myBookmarkedBooks.bookmarkedBooks{
                 if currentBook.value.title.contains(searchTerm)  || searchTerm == ""{
                     let book = BookSummaryView()
                     
@@ -139,13 +139,13 @@ class FavoriteBooksViewController: UIViewController {
         //acessando a tabBar para acessar a instancia de bookmarkedbooks que há lá
         if let tabBarController = tabBarController as? TabBarController {
            
-            if tabBarController.myBookmarkedBooks[book.id] == nil{
+            if tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] == nil{
             
-                tabBarController.myBookmarkedBooks[book.id] = book
+                tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] = book
                 sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             } else{
                 
-                tabBarController.myBookmarkedBooks[book.id] = nil
+                tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] = nil
                 sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
             }
         }
@@ -156,7 +156,7 @@ class FavoriteBooksViewController: UIViewController {
     func updateBookmarkButton(of book : Book, sender: UIButton) {
         //acessando a tabBar para acessar a instancia de bookmarkedbooks que há lá
         if let tabBarController = tabBarController as? TabBarController {
-            if tabBarController.myBookmarkedBooks[book.id] == nil{
+            if tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] == nil{
                 sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
             } else{
                 sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)

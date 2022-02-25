@@ -10,9 +10,21 @@ import Foundation
 class BookmarkedBooks {
     var bookmarkedBooks = [String : Book]() {
         didSet {
-            if let bookmarkedBooksEncoded = try? JSONEncoder().encode(bookmarkedBooks) {
+            let encoder = JSONEncoder()
+            if let bookmarkedBooksEncoded = try? encoder.encode(bookmarkedBooks) {
                 UserDefaults.standard.set(bookmarkedBooksEncoded, forKey: "BookmarkedBooks")
             }
         }
+    }
+    
+    init() {
+        if let savedItems = UserDefaults.standard.data(forKey: "BookmarkedBooks") {
+            if let decodedItems = try? JSONDecoder().decode([String : Book].self, from: savedItems) {
+                bookmarkedBooks = decodedItems
+                return
+            }
+        }
+
+        bookmarkedBooks = [:]
     }
 }

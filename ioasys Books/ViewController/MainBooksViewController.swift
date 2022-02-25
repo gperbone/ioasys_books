@@ -207,13 +207,13 @@ class MainBooksViewController: UIViewController, UIScrollViewDelegate {
         //acessando a tabBar para acessar a instancia de bookmarkedbooks que há lá
         if let tabBarController = tabBarController as? TabBarController {
 
-            if tabBarController.myBookmarkedBooks[book.id] == nil{
+            if tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] == nil{
                 
-                tabBarController.myBookmarkedBooks[book.id] = book
+                tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] = book
                 sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             } else{
                 
-                tabBarController.myBookmarkedBooks[book.id] = nil
+                tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] = nil
                 sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
             }
         }
@@ -222,7 +222,7 @@ class MainBooksViewController: UIViewController, UIScrollViewDelegate {
     func updateBookmarkButton(of book : Book, sender: UIButton) {
         //acessando a tabBar para acessar a instancia de bookmarkedbooks que há lá
         if let tabBarController = tabBarController as? TabBarController {
-            if tabBarController.myBookmarkedBooks[book.id] == nil{
+            if tabBarController.myBookmarkedBooks.bookmarkedBooks[book.id] == nil{
                 sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
             } else{
                 sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
@@ -232,7 +232,7 @@ class MainBooksViewController: UIViewController, UIScrollViewDelegate {
     
     func updateButton(of view: BookSummaryView){
         if let tabBarController = tabBarController as? TabBarController {
-            if tabBarController.myBookmarkedBooks[(view.bookID.text)!] == nil{
+            if tabBarController.myBookmarkedBooks.bookmarkedBooks[(view.bookID.text)!] == nil{
                 view.bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
             } else{
                 view.bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
